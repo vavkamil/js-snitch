@@ -296,6 +296,24 @@ def test_check_dependency_success(capsys):
         assert "[i] Test version: 1.0.0" in captured.out
 
 
+def test_check_dependency_stderr_fallback(capsys):
+    """Test check_dependency when version is in stderr instead of stdout"""
+    with patch("subprocess.run") as mock_run, patch("js_snitch.banner"):
+
+        # Mock a case where version is in stderr (like semgrep)
+        mock_run.return_value = MagicMock(
+            stdout="",  # Empty stdout
+            stderr="1.0.0\n",  # Version in stderr
+            returncode=0,
+        )
+
+        version = check_dependency("test", "Test", verbose=True)
+        assert version == "1.0.0"
+
+        captured = capsys.readouterr()
+        assert "[i] Test version: 1.0.0" in captured.out
+
+
 def test_download_and_beautify(tmp_path):
     js_content = 'function test(){console.log("hello")}'
     beautified_js = 'function test() {\n    console.log("hello")\n}'
