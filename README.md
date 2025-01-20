@@ -1,0 +1,2 @@
+# js-snitch
+JS Snitch
