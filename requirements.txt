@@ -1,5 +1,6 @@
 beautifulsoup4==4.12.3
 jsbeautifier==1.14.9
 pytest==7.4.4
+pytest-cov==4.1.0
 requests==2.32.3
 tqdm==4.66.1
