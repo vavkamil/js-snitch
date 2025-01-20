@@ -19,6 +19,8 @@ JS Snitch is intended to help penetration testers, bug bounty hunters, and secur
 - **Aggregated results**: Consolidates Trufflehog and Semgrep findings into a single report.
 - **Unverified vs. Verified secrets**: Quickly see which secrets are definitely valid (verified) and which ones need manual inspection.
 
+![JS Snitch Cover](./cover.png)
+
 ## Description
 
 Scans remote JavaScript files with Trufflehog + Semgrep to detect leaked secrets
