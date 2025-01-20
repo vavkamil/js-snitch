@@ -261,32 +261,39 @@ def test_scan_host_no_js_files():
         assert result["verified_findings"] == 0
 
 
-def test_check_dependency_success():
-    with patch("subprocess.run") as mock_run:
-        mock_run.return_value = MagicMock(stdout="v1.0.0\n", stderr="", returncode=0)
-        version = check_dependency("test-cmd", "Test Tool", verbose=True)
-        assert version == "v1.0.0"
-        mock_run.assert_called_once_with(
-            ["test-cmd", "--version"],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            check=True,
-        )
+def test_check_dependency_not_found(capsys):
+    """Test check_dependency when the command is not found"""
+    with patch("subprocess.run") as mock_run, patch(
+        "js_snitch.banner"
+    ):  # Prevent banner from printing
+
+        # Make subprocess.run raise an exception
+        mock_run.side_effect = FileNotFoundError()
+
+        # Use pytest.raises to catch the SystemExit
+        with pytest.raises(SystemExit) as exc_info:
+            check_dependency("nonexistent", "NonExistent")
+
+        assert exc_info.value.code == 1
+
+        captured = capsys.readouterr()
+        assert "[-] NonExistent is not installed or not found in PATH." in captured.out
 
 
-def test_check_dependency_stderr_fallback():
-    with patch("subprocess.run") as mock_run:
-        mock_run.return_value = MagicMock(stdout="", stderr="v2.0.0\n", returncode=0)
-        version = check_dependency("test-cmd", "Test Tool", verbose=True)
-        assert version == "v2.0.0"
+def test_check_dependency_success(capsys):
+    """Test check_dependency when command exists"""
+    with patch("subprocess.run") as mock_run, patch(
+        "js_snitch.banner"
+    ):  # Prevent banner from printing
 
+        mock_run.return_value = MagicMock(stdout="1.0.0\n", stderr="", returncode=0)
 
-def test_check_dependency_failure():
-    with patch("subprocess.run") as mock_run:
-        mock_run.side_effect = subprocess.CalledProcessError(1, "test-cmd")
-        with pytest.raises(SystemExit):
-            check_dependency("test-cmd", "Test Tool")
+        # Test verbose mode
+        version = check_dependency("test", "Test", verbose=True)
+        assert version == "1.0.0"
+
+        captured = capsys.readouterr()
+        assert "[i] Test version: 1.0.0" in captured.out
 
 
 def test_download_and_beautify(tmp_path):
@@ -868,3 +875,23 @@ def test_parse_trufflehog_json_empty_line():
         assert results[0]["filename"] == "test.js"
         assert results[0]["raw"] == "test-value"
         assert results[0]["verified"] is False
+
+
+def test_main_with_missing_dependency(capsys):
+    """Test main when a required dependency is missing"""
+    with patch("sys.argv", ["js_snitch.py", "--host", "example.com"]), patch(
+        "js_snitch.banner"
+    ) as mock_banner, patch("subprocess.run") as mock_run:
+
+        # Make banner do nothing
+        mock_banner.side_effect = lambda: None
+        # Make subprocess.run raise FileNotFoundError
+        mock_run.side_effect = FileNotFoundError()
+
+        with pytest.raises(SystemExit) as exc_info:
+            main()
+
+        assert exc_info.value.code == 1
+
+        captured = capsys.readouterr()
+        assert "[-] TruffleHog is not installed or not found in PATH." in captured.out
