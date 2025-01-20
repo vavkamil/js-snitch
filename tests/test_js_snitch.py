@@ -296,6 +296,24 @@ def test_check_dependency_success(capsys):
         assert "[i] Test version: 1.0.0" in captured.out
 
 
+def test_check_dependency_stderr_fallback(capsys):
+    """Test check_dependency when version is in stderr instead of stdout"""
+    with patch("subprocess.run") as mock_run, patch("js_snitch.banner"):
+
+        # Mock a case where version is in stderr (like semgrep)
+        mock_run.return_value = MagicMock(
+            stdout="",  # Empty stdout
+            stderr="1.0.0\n",  # Version in stderr
+            returncode=0,
+        )
+
+        version = check_dependency("test", "Test", verbose=True)
+        assert version == "1.0.0"
+
+        captured = capsys.readouterr()
+        assert "[i] Test version: 1.0.0" in captured.out
+
+
 def test_download_and_beautify(tmp_path):
     js_content = 'function test(){console.log("hello")}'
     beautified_js = 'function test() {\n    console.log("hello")\n}'
@@ -400,11 +418,16 @@ def test_main_with_host(capsys):
         mock_scan.assert_called_once_with("example.com", minimal_output=False)
 
 
-def test_main_with_invalid_args():
+def test_main_with_invalid_args(capsys):
     test_args = ["js_snitch.py"]  # No --host or --list provided
-    with patch("sys.argv", test_args), patch(
-        "argparse.ArgumentParser.error"
-    ) as mock_error:
+    with patch("sys.argv", test_args), patch("js_snitch.banner") as mock_banner, patch(
+        "js_snitch.check_dependency"
+    ) as mock_check, patch("argparse.ArgumentParser.error") as mock_error:
+
+        # Make banner do nothing
+        mock_banner.side_effect = lambda: None
+        # Make dependency check succeed
+        mock_check.return_value = "1.0.0"
 
         main()
         mock_error.assert_called_once_with("You must specify either --host or --list.")

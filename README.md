@@ -1,5 +1,26 @@
 # JS Snitch
 
+## Introduction
+
+**JS Snitch** is a command-line tool designed to scan remote JavaScript files for potential secrets or credentials using [Trufflehog](https://github.com/trufflesecurity/trufflehog) and [Semgrep](https://github.com/semgrep/semgrep). It automates the process of:
+
+- Extracting `.js` files from a target domain.
+- Downloading and beautifying the scripts.
+- Running Trufflehog and Semgrep for possible secret leaks.
+
+JS Snitch is intended to help penetration testers, bug bounty hunters, and security engineers quickly identify leaked API keys, tokens, or other credentials hidden in external JavaScript files.
+
+## Features
+
+- **Multi-host scanning**: Provide either a single host or a list of hosts to scan.
+- **Trufflehog integration**: Leverages Trufflehog's scanning capabilities for secret detection.
+- **Semgrep integration**: Configurable Semgrep rulesets for additional scanning and pattern-based detection.
+- **Beautification step**: Automatically prettifies downloaded JS files for better readability in local analysis.
+- **Aggregated results**: Consolidates Trufflehog and Semgrep findings into a single report.
+- **Unverified vs. Verified secrets**: Quickly see which secrets are definitely valid (verified) and which ones need manual inspection.
+
+![JS Snitch Cover](./cover.png)
+
 ## Description
 
 Scans remote JavaScript files with Trufflehog + Semgrep to detect leaked secrets
@@ -10,7 +31,7 @@ Scans remote JavaScript files with Trufflehog + Semgrep to detect leaked secrets
 $ git clone https://github.com/vavkamil/js-snitch.git
 $ cd js-snitch
 $ pip install -r requirements.txt
-$ python js-snitch.py
+$ python js_snitch.py
 ```
 
 ### Required
@@ -21,14 +42,14 @@ $ python js-snitch.py
 ## Usage
 
 ```bash
-./js-snitch$ python js-snitch.py --help
+./js-snitch$ python js_snitch.py --help
 
     ▗▖ ▗▄▄▖     ▗▄▄▖▗▖  ▗▖▗▄▄▄▖▗▄▄▄▖▗▄▄▖▗▖ ▗▖
     ▐▌▐▌       ▐▌   ▐▛▚▖▐▌  █    █ ▐▌   ▐▌ ▐▌
     ▐▌ ▝▀▚▖     ▝▀▚▖▐▌ ▝▜▌  █    █ ▐▌   ▐▛▀▜▌
  ▗▄▄▞▘▗▄▄▞▘    ▗▄▄▞▘▐▌  ▐▌▗▄█▄▖  █ ▝▚▄▄▖▐▌ ▐▌v0.1
 
-usage: js-snitch.py [-h] [--host HOST] [--list LIST] [--debug]
+usage: js_snitch.py [-h] [--host HOST] [--list LIST] [--debug]
 
 Scans remote JavaScript files with Trufflehog + Semgrep to detect leaked secrets
 
