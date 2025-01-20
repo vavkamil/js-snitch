@@ -1,0 +1,4 @@
+beautifulsoup4==4.12.3
+jsbeautifier==1.14.9
+requests==2.32.3
+tqdm==4.66.1
