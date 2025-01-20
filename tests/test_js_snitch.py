@@ -400,11 +400,16 @@ def test_main_with_host(capsys):
         mock_scan.assert_called_once_with("example.com", minimal_output=False)
 
 
-def test_main_with_invalid_args():
+def test_main_with_invalid_args(capsys):
     test_args = ["js_snitch.py"]  # No --host or --list provided
-    with patch("sys.argv", test_args), patch(
-        "argparse.ArgumentParser.error"
-    ) as mock_error:
+    with patch("sys.argv", test_args), patch("js_snitch.banner") as mock_banner, patch(
+        "js_snitch.check_dependency"
+    ) as mock_check, patch("argparse.ArgumentParser.error") as mock_error:
+
+        # Make banner do nothing
+        mock_banner.side_effect = lambda: None
+        # Make dependency check succeed
+        mock_check.return_value = "1.0.0"
 
         main()
         mock_error.assert_called_once_with("You must specify either --host or --list.")
