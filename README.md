@@ -31,7 +31,7 @@ Scans remote JavaScript files with Trufflehog + Semgrep to detect leaked secrets
 $ git clone https://github.com/vavkamil/js-snitch.git
 $ cd js-snitch
 $ pip install -r requirements.txt
-$ python js-snitch.py
+$ python js_snitch.py
 ```
 
 ### Required
@@ -42,14 +42,14 @@ $ python js-snitch.py
 ## Usage
 
 ```bash
-./js-snitch$ python js-snitch.py --help
+./js-snitch$ python js_snitch.py --help
 
     ▗▖ ▗▄▄▖     ▗▄▄▖▗▖  ▗▖▗▄▄▄▖▗▄▄▄▖▗▄▄▖▗▖ ▗▖
     ▐▌▐▌       ▐▌   ▐▛▚▖▐▌  █    █ ▐▌   ▐▌ ▐▌
     ▐▌ ▝▀▚▖     ▝▀▚▖▐▌ ▝▜▌  █    █ ▐▌   ▐▛▀▜▌
  ▗▄▄▞▘▗▄▄▞▘    ▗▄▄▞▘▐▌  ▐▌▗▄█▄▖  █ ▝▚▄▄▖▐▌ ▐▌v0.1
 
-usage: js-snitch.py [-h] [--host HOST] [--list LIST] [--debug]
+usage: js_snitch.py [-h] [--host HOST] [--list LIST] [--debug]
 
 Scans remote JavaScript files with Trufflehog + Semgrep to detect leaked secrets
 
