@@ -135,3 +135,63 @@ $ python js_snitch.py --list small_list.txt
 
 $ 
 ```
+
+## Output Structure
+
+When JS Snitch completes a scan, the results are saved in the `output` directory. The folder structure is organized by the scanned hostname and timestamp for easy navigation. Below is an example of the output structure and its contents:
+
+```sh
+output/
+└── example.com_2025-01-20_15_59_26/
+    ├── tmp/
+    │   └── [raw JavaScript files downloaded from the target website]
+    ├── beautify/
+    │   └── [un-minified and beautified JavaScript files for manual analysis]
+    ├── secrets.json
+    │   └── [raw output from Trufflehog]
+    ├── semgrep_output.json
+    │   └── [raw output from Semgrep]
+    └── secrets.txt
+        └── [consolidated and deduplicated list of findings from Trufflehog and Semgrep]
+```
+
+### Detailed Description of Output Files
+
+- `tmp/`: _Contains the raw JavaScript files exactly as downloaded from the target website. Useful if you need to analyze the original files in their untouched state._
+
+- `beautify/`: _Stores the un-minified and beautified JavaScript files for easier readability and manual analysis. These files are derived from the raw files in the tmp/ folder._
+
+- `secrets.json`: _Contains the raw JSON output from Trufflehog. This file includes all secrets detected by Trufflehog, along with metadata about their detection._
+
+- `semgrep_output.json`: _Stores the raw JSON output from Semgrep. This file lists all the findings detected by the configured Semgrep rules._
+
+- `secrets.txt`: _A consolidated, deduplicated, and human-readable report of the findings from both Trufflehog and Semgrep. The file includes:_
+
+  - _The detected secret_
+  - _The type of secret (e.g., API key, token)_
+  - _Whether the secret was verified_
+  - _A reference to the corresponding beautified JavaScript file for manual inspection_
+
+#### Example secrets.txt
+
+Here’s an example of what a `secrets.txt` file might look like:
+
+```bash
+Trufflehog secrets:
+
+filename: beautify/main.js
+DetectorName: SlackWebhook | Verified: True
+Raw: https://hooks.slack.com/services/REDACTED
+
+filename: beautify/api.js
+DetectorName: GithubPAT | Verified: False
+Raw: ghp_12345REDACTED
+
+Semgrep secrets:
+
+filename: beautify/config.js
+rule_id: detected-google-api-key
+raw: "AIzaSyD_REDACTED"
+```
+
+This organization allows you to easily cross-reference any findings with their corresponding beautified JavaScript files and perform further manual analysis as needed.
