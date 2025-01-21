@@ -5,11 +5,11 @@
 [![Black badge](https://github.com/vavkamil/js-snitch/actions/workflows/black.yml/badge.svg)](https://github.com/vavkamil/js-snitch/actions/workflows/black.yml)
 [![License badge](https://badgen.net/github/license/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch/blob/update-readme/LICENSE)
 [![Dependabot badge](https://badgen.net/github/dependabot/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch/security/dependabot)
-[![Stars badge](https://badgen.net/github/stars/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch)
-[![Forks badge](https://badgen.net/github/forks/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch/forks)
-[![Issues badge](https://badgen.net/github/issues/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch/issues)
 [![Last commit badge](https://badgen.net/github/last-commit/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch/pulls)
+<!-- [![Stars badge](https://badgen.net/github/stars/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch)
+[![Forks badge](https://badgen.net/github/forks/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch/forks)
 [![Merged badge](https://badgen.net/github/merged-prs/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch/pulls)
+[![Issues badge](https://badgen.net/github/issues/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch/issues) -->
 
 ## Introduction
 
