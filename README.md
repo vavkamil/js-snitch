@@ -1,8 +1,8 @@
 # JS Snitch
 
-![Static Badge](https://img.shields.io/badge/Coverage-100%25-green)
-
-![badge](https://github.com/vavkamil/js-snitch/actions/workflows/tests.yml/badge.svg)
+[![Coverage badge](https://img.shields.io/badge/Coverage-100%25-brightreen)](https://github.com/vavkamil/js-snitch/actions/workflows/tests.yml)
+[![Tests badge](https://github.com/vavkamil/js-snitch/actions/workflows/tests.yml/badge.svg)](https://github.com/vavkamil/js-snitch/actions/workflows/tests.yml)
+[![Black badge](https://github.com/vavkamil/js-snitch/actions/workflows/black.yml/badge.svg)](https://github.com/vavkamil/js-snitch/actions/workflows/black.yml)
 
 ## Introduction
 
