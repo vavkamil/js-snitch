@@ -30,7 +30,7 @@ JS Snitch is intended to help penetration testers, bug bounty hunters, and secur
 - **Aggregated results**: Consolidates Trufflehog and Semgrep findings into a single report.
 - **Unverified vs. Verified secrets**: Quickly see which secrets are definitely valid (verified) and which ones need manual inspection.
 
-![JS Snitch Cover](./cover.png)
+![JS Snitch Cover](./images/cover.png)
 
 ## Description
 
@@ -70,6 +70,8 @@ options:
   --list LIST  Path to a file containing multiple hostnames, one per line
   --debug      Check dependencies (TruffleHog & Semgrep) versions, then exit.
 ```
+
+![Example](./images/screenshot.png)
 
 ## Examples
 
