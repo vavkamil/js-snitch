@@ -1,5 +1,9 @@
 # JS Snitch
 
+![Static Badge](https://img.shields.io/badge/Coverage-100%25-green)
+
+![badge](https://github.com/vavkamil/js-snitch/actions/workflows/tests.yml/badge.svg)
+
 ## Introduction
 
 **JS Snitch** is a command-line tool designed to scan remote JavaScript files for potential secrets or credentials using [Trufflehog](https://github.com/trufflesecurity/trufflehog) and [Semgrep](https://github.com/semgrep/semgrep). It automates the process of:
