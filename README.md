@@ -3,7 +3,7 @@
 [![Coverage badge](https://img.shields.io/badge/Coverage-100%25-brightreen)](https://github.com/vavkamil/js-snitch/actions/workflows/tests.yml)
 [![Tests badge](https://github.com/vavkamil/js-snitch/actions/workflows/tests.yml/badge.svg)](https://github.com/vavkamil/js-snitch/actions/workflows/tests.yml)
 [![Black badge](https://github.com/vavkamil/js-snitch/actions/workflows/black.yml/badge.svg)](https://github.com/vavkamil/js-snitch/actions/workflows/black.yml)
-[![License badge](https://badgen.net/github/license/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch/blob/update-readme/LICENSE)
+[![License badge](https://badgen.net/github/license/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch/blob/main/LICENSE)
 [![Dependabot badge](https://badgen.net/github/dependabot/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch/security/dependabot)
 [![Last commit badge](https://badgen.net/github/last-commit/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch/pulls)
 <!-- [![Stars badge](https://badgen.net/github/stars/vavkamil/js-snitch)](https://github.com/vavkamil/js-snitch)
