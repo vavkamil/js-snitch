@@ -1,4 +1,4 @@
-# JS Snitch
+# 🔥 JS Snitch
 
 [![Coverage badge](https://img.shields.io/badge/Coverage-100%25-brightreen)](https://github.com/vavkamil/js-snitch/actions/workflows/tests.yml)
 [![Tests badge](https://github.com/vavkamil/js-snitch/actions/workflows/tests.yml/badge.svg)](https://github.com/vavkamil/js-snitch/actions/workflows/tests.yml)
@@ -13,7 +13,7 @@
 
 ## Introduction
 
-**JS Snitch** is a command-line tool designed to scan remote JavaScript files for potential secrets or credentials using [Trufflehog](https://github.com/trufflesecurity/trufflehog) and [Semgrep](https://github.com/semgrep/semgrep). It automates the process of:
+**JS Snitch** is a command-line tool that scans remote JavaScript files for potential secrets or credentials using [Trufflehog](https://github.com/trufflesecurity/trufflehog) and [Semgrep](https://github.com/semgrep/semgrep). It automates the process of:
 
 - Extracting `.js` files from a target domain.
 - Downloading and beautifying the scripts.
@@ -23,12 +23,18 @@ JS Snitch is intended to help penetration testers, bug bounty hunters, and secur
 
 ## Features
 
-- **Multi-host scanning**: Provide either a single host or a list of hosts to scan.
-- **Trufflehog integration**: Leverages Trufflehog's scanning capabilities for secret detection.
-- **Semgrep integration**: Configurable Semgrep rulesets for additional scanning and pattern-based detection.
-- **Beautification step**: Automatically prettifies downloaded JS files for better readability in local analysis.
-- **Aggregated results**: Consolidates Trufflehog and Semgrep findings into a single report.
-- **Unverified vs. Verified secrets**: Quickly see which secrets are definitely valid (verified) and which ones need manual inspection.
+- **Multi-host scanning**:
+  - Provide a single host or a list of hosts to scan.
+- **Trufflehog integration**:
+  - Leverages Trufflehog's scanning capabilities for secret detection.
+- **Semgrep integration**:
+  - Configurable Semgrep rulesets for additional scanning and pattern-based detection.
+- **Beautification step**:
+  - Automatically prettifies downloaded JS files for better readability in local analysis.
+- **Aggregated results**:
+  - Consolidates Trufflehog and Semgrep findings into a single report.
+- **Unverified vs. Verified secrets**:
+  - Quickly see which secrets are valid (verified) and which need manual inspection.
 
 ![JS Snitch Cover](./images/cover.png)
 
